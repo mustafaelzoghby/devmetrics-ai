@@ -2,6 +2,9 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { Providers } from "@/components/providers"
 import { Toaster } from "sonner"
+import { Suspense } from "react"
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: "DevMetrics AI — Developer Analytics Platform",
@@ -26,10 +29,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased">
-        <Providers>
-          {children}
-          <Toaster position="top-right" richColors />
-        </Providers>
+        <Suspense fallback={<div className="flex h-screen items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" /></div>}>
+          <Providers>
+            {children}
+            <Toaster position="top-right" richColors />
+          </Providers>
+        </Suspense>
       </body>
     </html>
   )

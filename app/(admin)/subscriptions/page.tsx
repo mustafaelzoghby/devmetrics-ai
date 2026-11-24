@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -63,7 +63,7 @@ const mockSubscriptions = [
 ];
 
 const planConfig: Record<string, { label: string; icon: any; color: string; bg: string }> = {
-  FREE: { label: "مجاني", icon: Star, color: "text-gray-600", bg: "bg-gray-100 dark:bg-gray-800" },
+  FREE: { label: "Ù…Ø¬Ø§Ù†ÙŠ", icon: Star, color: "text-gray-600", bg: "bg-gray-100 dark:bg-gray-800" },
   PRO: { label: "Pro", icon: Zap, color: "text-purple-600", bg: "bg-purple-100 dark:bg-purple-900/30" },
   ENTERPRISE: { label: "Enterprise", icon: Building, color: "text-blue-600", bg: "bg-blue-100 dark:bg-blue-900/30" },
 };
@@ -85,21 +85,21 @@ export default function SubscriptionsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Subscriptions</h1>
-          <p className="text-muted-foreground mt-1">إدارة اشتراكات المستخدمين والمدفوعات</p>
+          <p className="text-muted-foreground mt-1">Ø¥Ø¯Ø§Ø±Ø© Ø§Ø´ØªØ±Ø§ÙƒØ§Øª Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† ÙˆØ§Ù„Ù…Ø¯ÙÙˆØ¹Ø§Øª</p>
         </div>
         <Button>
           <Download className="h-4 w-4 mr-2" />
-          تصدير التقرير
+          ØªØµØ¯ÙŠØ± Ø§Ù„ØªÙ‚Ø±ÙŠØ±
         </Button>
       </div>
 
       {/* KPIs */}
       <div className="grid gap-4 md:grid-cols-4">
         {[
-          { label: "الإيرادات الشهرية", value: `\$${totalRevenue}`, icon: TrendingUp, change: "+18% هذا الشهر", color: "text-green-500" },
-          { label: "اشتراكات نشطة", value: `${activeCount}`, icon: CheckCircle, change: "+2 هذا الأسبوع", color: "text-blue-500" },
-          { label: "مشتركو Pro", value: `${proCount}`, icon: Zap, change: "+1 هذا الشهر", color: "text-purple-500" },
-          { label: "مشتركو Enterprise", value: `${enterpriseCount}`, icon: Building, change: "0 تغيير", color: "text-orange-500" },
+          { label: "Ø§Ù„Ø¥ÙŠØ±Ø§Ø¯Ø§Øª Ø§Ù„Ø´Ù‡Ø±ÙŠØ©", value: `\$${totalRevenue}`, icon: TrendingUp, change: "+18% Ù‡Ø°Ø§ Ø§Ù„Ø´Ù‡Ø±", color: "text-green-500" },
+          { label: "Ø§Ø´ØªØ±Ø§ÙƒØ§Øª Ù†Ø´Ø·Ø©", value: `${activeCount}`, icon: CheckCircle, change: "+2 Ù‡Ø°Ø§ Ø§Ù„Ø£Ø³Ø¨ÙˆØ¹", color: "text-blue-500" },
+          { label: "Ù…Ø´ØªØ±ÙƒÙˆ Pro", value: `${proCount}`, icon: Zap, change: "+1 Ù‡Ø°Ø§ Ø§Ù„Ø´Ù‡Ø±", color: "text-purple-500" },
+          { label: "Ù…Ø´ØªØ±ÙƒÙˆ Enterprise", value: `${enterpriseCount}`, icon: Building, change: "0 ØªØºÙŠÙŠØ±", color: "text-orange-500" },
         ].map((kpi) => (
           <Card key={kpi.label}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -117,7 +117,7 @@ export default function SubscriptionsPage() {
       {/* Search */}
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input className="pl-9" placeholder="بحث بالاسم أو الإيميل..." value={search} onChange={(e) => setSearch(e.target.value)} />
+        <Input className="pl-9" placeholder="Ø¨Ø­Ø« Ø¨Ø§Ù„Ø§Ø³Ù… Ø£Ùˆ Ø§Ù„Ø¥ÙŠÙ…ÙŠÙ„..." value={search} onChange={(e) => setSearch(e.target.value)} />
       </div>
 
       {/* Table */}
@@ -127,13 +127,13 @@ export default function SubscriptionsPage() {
             <table className="w-full text-sm">
               <thead className="border-b bg-muted/30">
                 <tr>
-                  <th className="text-right p-4 font-medium text-muted-foreground">المستخدم</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground">الخطة</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground">الحالة</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground">المبلغ/شهر</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground">الفاتورة القادمة</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground">عضو منذ</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground">إجراء</th>
+                  <th className="text-right p-4 font-medium text-muted-foreground">Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…</th>
+                  <th className="text-right p-4 font-medium text-muted-foreground">Ø§Ù„Ø®Ø·Ø©</th>
+                  <th className="text-right p-4 font-medium text-muted-foreground">Ø§Ù„Ø­Ø§Ù„Ø©</th>
+                  <th className="text-right p-4 font-medium text-muted-foreground">Ø§Ù„Ù…Ø¨Ù„Øº/Ø´Ù‡Ø±</th>
+                  <th className="text-right p-4 font-medium text-muted-foreground">Ø§Ù„ÙØ§ØªÙˆØ±Ø© Ø§Ù„Ù‚Ø§Ø¯Ù…Ø©</th>
+                  <th className="text-right p-4 font-medium text-muted-foreground">Ø¹Ø¶Ùˆ Ù…Ù†Ø°</th>
+                  <th className="text-right p-4 font-medium text-muted-foreground">Ø¥Ø¬Ø±Ø§Ø¡</th>
                 </tr>
               </thead>
               <tbody className="divide-y">
@@ -162,14 +162,14 @@ export default function SubscriptionsPage() {
                               : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
                           }
                         >
-                          {sub.status === "ACTIVE" ? "نشط" : "ملغي"}
+                          {sub.status === "ACTIVE" ? "Ù†Ø´Ø·" : "Ù…Ù„ØºÙŠ"}
                         </Badge>
                       </td>
-                      <td className="p-4 font-medium">{sub.amount > 0 ? `\$${sub.amount}` : "مجاني"}</td>
-                      <td className="p-4 text-muted-foreground">{sub.nextBilling || "—"}</td>
+                      <td className="p-4 font-medium">{sub.amount > 0 ? `\$${sub.amount}` : "Ù…Ø¬Ø§Ù†ÙŠ"}</td>
+                      <td className="p-4 text-muted-foreground">{sub.nextBilling || "â€”"}</td>
                       <td className="p-4 text-muted-foreground">{sub.since}</td>
                       <td className="p-4">
-                        <Button variant="outline" size="sm">إدارة</Button>
+                        <Button variant="outline" size="sm">Ø¥Ø¯Ø§Ø±Ø©</Button>
                       </td>
                     </tr>
                   );
@@ -182,3 +182,4 @@ export default function SubscriptionsPage() {
     </div>
   );
 }
+

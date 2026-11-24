@@ -7,6 +7,7 @@ import { Bell, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: "Admin — DevMetrics AI" }
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

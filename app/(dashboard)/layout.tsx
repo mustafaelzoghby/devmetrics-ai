@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
 
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: "Dashboard — DevMetrics AI" }
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
