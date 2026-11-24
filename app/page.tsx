@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-  Github,
+  GitBranch,
   BarChart3,
   Bot,
   FolderKanban,
@@ -116,7 +116,7 @@ export default function LandingPage() {
             <a href="#features" className="text-sm text-muted-foreground hover:text-foreground">Features</a>
             <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground">Pricing</a>
             <Button onClick={() => signIn("github")} size="sm">
-              <Github className="mr-2 h-4 w-4" />
+              <GitBranch className="mr-2 h-4 w-4" />
               Sign in with GitHub
             </Button>
           </div>
@@ -143,7 +143,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" onClick={() => signIn("github")} className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white border-0">
-              <Github className="mr-2 h-5 w-5" />
+              <GitBranch className="mr-2 h-5 w-5" />
               Start Free with GitHub
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

@@ -3,7 +3,7 @@
 import { signIn } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Github, BarChart3, Bot, Shield } from "lucide-react"
+import { GitBranch, BarChart3, Bot, Shield } from "lucide-react"
 
 export default function LoginPage() {
   return (
@@ -26,7 +26,7 @@ export default function LoginPage() {
           {/* Features preview */}
           <div className="grid grid-cols-3 gap-3">
             {[
-              { icon: BarChart3, label: "GitHub Analytics", color: "bg-blue-50 text-blue-600" },
+              { icon: BarChart3, label: "GitBranch Analytics", color: "bg-blue-50 text-blue-600" },
               { icon: Bot, label: "AI Code Review", color: "bg-purple-50 text-purple-600" },
               { icon: Shield, label: "Team Management", color: "bg-green-50 text-green-600" },
             ].map((f) => (
@@ -42,7 +42,7 @@ export default function LoginPage() {
             className="w-full h-12 text-base bg-gray-900 hover:bg-gray-800 text-white"
             size="lg"
           >
-            <Github className="mr-3 h-5 w-5" />
+            <GitBranch className="mr-3 h-5 w-5" />
             Continue with GitHub
           </Button>
 

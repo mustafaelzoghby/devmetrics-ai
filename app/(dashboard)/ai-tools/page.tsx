@@ -32,7 +32,7 @@ import { toast } from "sonner"
 
 type ToolTab = "code-review" | "readme" | "commit" | "career"
 
-export function AIToolsPage() {
+export default function AIToolsPage() {
   const [activeTab, setActiveTab] = useState<ToolTab>("code-review")
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<any>(null)

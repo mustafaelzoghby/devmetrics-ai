@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Github, LogOut, Settings, User } from "lucide-react"
+import { GitBranch, LogOut, Settings, User } from "lucide-react"
 import Link from "next/link"
 import { getInitials } from "@/lib/utils"
 
@@ -25,7 +25,7 @@ export function UserNav() {
   if (!session) {
     return (
       <Button onClick={() => signIn("github")} variant="outline" size="sm">
-        <Github className="mr-2 h-4 w-4" />
+        <GitBranch className="mr-2 h-4 w-4" />
         Sign in with GitHub
       </Button>
     )

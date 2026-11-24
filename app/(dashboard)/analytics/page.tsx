@@ -16,7 +16,7 @@ import {
   Code,
   RefreshCw,
   Search,
-  Github,
+  GitBranch,
   Calendar,
   Zap,
 } from "lucide-react";
@@ -81,9 +81,9 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">GitHub Analytics</h1>
+        <h1 className="text-3xl font-bold tracking-tight">GitBranch Analytics</h1>
         <p className="text-muted-foreground mt-1">
-          تحليل شامل لأداءك على GitHub بالذكاء الاصطناعي
+          تحليل شامل لأداءك على GitBranch بالذكاء الاصطناعي
         </p>
       </div>
 
@@ -105,7 +105,7 @@ export default function AnalyticsPage() {
               {loading ? (
                 <RefreshCw className="h-4 w-4 animate-spin mr-2" />
               ) : (
-                <Github className="h-4 w-4 mr-2" />
+                <GitBranch className="h-4 w-4 mr-2" />
               )}
               تحليل
             </Button>

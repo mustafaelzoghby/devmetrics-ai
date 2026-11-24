@@ -14,7 +14,7 @@ import {
   Shield,
   Palette,
   Key,
-  Github,
+  GitBranch,
   Link,
   Moon,
   Sun,
@@ -142,7 +142,7 @@ export default function SettingsPage() {
                 { icon: Mail, label: "إشعارات البريد الإلكتروني", desc: "استقبال الإشعارات عبر الإيميل", enabled: true },
                 { icon: Bell, label: "إشعارات داخل التطبيق", desc: "إشعارات فورية داخل المنصة", enabled: true },
                 { icon: Smartphone, label: "إشعارات الموبايل", desc: "Push notifications للتطبيق", enabled: false },
-                { icon: Github, label: "تحديثات GitHub", desc: "إشعارات عند تحديث المستودعات", enabled: true },
+                { icon: GitBranch, label: "تحديثات GitHub", desc: "إشعارات عند تحديث المستودعات", enabled: true },
               ].map((item) => (
                 <div key={item.label} className="flex items-center justify-between p-4 border rounded-lg">
                   <div className="flex items-center gap-3">
@@ -243,7 +243,7 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {[
-                { name: "GitHub", icon: Github, connected: true, username: "@mustafaelzoghby", color: "text-gray-900 dark:text-white" },
+                { name: "GitHub", icon: GitBranch, connected: true, username: "@mustafaelzoghby", color: "text-gray-900 dark:text-white" },
                 { name: "GitLab", icon: Globe, connected: false, username: null, color: "text-orange-500" },
                 { name: "Bitbucket", icon: Globe, connected: false, username: null, color: "text-blue-600" },
               ].map((integration) => (

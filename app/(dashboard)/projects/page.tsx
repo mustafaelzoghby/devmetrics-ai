@@ -9,7 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import {
   Plus,
   Search,
-  LayoutKanban,
+  Kanban,
   List,
   Calendar,
   Users,
@@ -139,7 +139,7 @@ export default function ProjectsPage() {
             className="rounded-none"
             onClick={() => setView("grid")}
           >
-            <LayoutKanban className="h-4 w-4" />
+            <Kanban className="h-4 w-4" />
           </Button>
           <Button
             variant={view === "list" ? "default" : "ghost"}
