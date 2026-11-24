@@ -97,7 +97,7 @@ const sampleUsers: User[] = [
   { id: "5", name: "Youssef Ibrahim", email: "youssef@example.com", role: "DEVELOPER", status: "PENDING", subscriptionPlan: "PRO", githubUsername: "youssefib", createdAt: "2024-11-20" },
 ]
 
-export function UserManagement() {
+export default function UserManagement() {
   const [users, setUsers] = useState<User[]>(sampleUsers)
   const [search, setSearch] = useState("")
   const [roleFilter, setRoleFilter] = useState<string>("all")

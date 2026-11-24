@@ -69,7 +69,7 @@ const systemHealth = [
   { name: "Email Service", status: "degraded", uptime: 98.5, latency: "340ms" },
 ]
 
-export function AdminDashboard() {
+export default function AdminDashboard() {
   const kpis = [
     {
       title: "Total Users",

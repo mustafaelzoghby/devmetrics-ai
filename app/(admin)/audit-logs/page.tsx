@@ -62,7 +62,7 @@ const sampleLogs: AuditEntry[] = [
   { id: "8", userId: "u1", userName: "Ahmed Hassan", userEmail: "ahmed@example.com", action: "team.invited", entity: "TeamInvitation", entityId: "inv1", createdAt: new Date(Date.now() - 43200000).toISOString(), ipAddress: "197.60.12.45" },
 ]
 
-export function AuditLogs() {
+export default function AuditLogs() {
   const [logs] = useState<AuditEntry[]>(sampleLogs)
   const [search, setSearch] = useState("")
   const [actionFilter, setActionFilter] = useState("all")
