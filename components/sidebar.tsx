@@ -29,33 +29,33 @@ import { useState } from "react"
 const navigation = [
   {
     title: "Overview",
-    href: "/dashboard",
+    href: "/overview",
     icon: Home,
   },
   {
     title: "Analytics",
-    href: "/dashboard/analytics",
+    href: "/analytics",
     icon: BarChart3,
   },
   {
     title: "AI Tools",
-    href: "/dashboard/ai-tools",
+    href: "/ai-tools",
     icon: Bot,
     badge: "New",
   },
   {
     title: "Projects",
-    href: "/dashboard/projects",
+    href: "/projects",
     icon: FolderKanban,
   },
   {
     title: "Teams",
-    href: "/dashboard/teams",
+    href: "/teams",
     icon: Users,
   },
   {
     title: "GitHub",
-    href: "/dashboard/github",
+    href: "/analytics",
     icon: GitBranch,
   },
 ]
@@ -86,12 +86,12 @@ const managementNavigation = [
 const accountNavigation = [
   {
     title: "Notifications",
-    href: "/dashboard/notifications",
+    href: "/notifications",
     icon: Bell,
   },
   {
     title: "Settings",
-    href: "/dashboard/settings",
+    href: "/settings",
     icon: Settings,
   },
 ]
@@ -168,7 +168,7 @@ export function Sidebar({ isAdmin, unreadNotifications = 0 }: SidebarProps) {
                 >
                   <item.icon className="h-4 w-4 shrink-0" />
                   {item.title}
-                  {item.href === "/dashboard/notifications" && unreadNotifications > 0 && (
+                  {item.href === "/notifications" && unreadNotifications > 0 && (
                     <Badge className="ml-auto text-xs py-0 h-5 bg-red-100 text-red-700 hover:bg-red-100">
                       {unreadNotifications}
                     </Badge>
