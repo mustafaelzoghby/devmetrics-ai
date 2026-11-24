@@ -1,4 +1,4 @@
-// This is your Prisma schema file
+// Prisma v5 Schema for DevMetrics AI
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,20 +8,105 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ===================== ENUMS =====================
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  DEVELOPER
+  VIEWER
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  PENDING
+}
+
+enum SubscriptionPlan {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum TeamRole {
+  OWNER
+  ADMIN
+  MANAGER
+  MEMBER
+  VIEWER
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  EXPIRED
+}
+
+enum ProjectStatus {
+  ACTIVE
+  COMPLETED
+  ARCHIVED
+  ON_HOLD
+  PLANNING
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  DONE
+  CANCELLED
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+  TASK_ASSIGNED
+  TEAM_INVITE
+  PROJECT_UPDATE
+  MENTION
+}
+
+enum SubStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  TRIAL
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
 // ===================== AUTH =====================
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  emailVerified DateTime?
-  image         String?
-  role          UserRole  @default(DEVELOPER)
-  status        UserStatus @default(ACTIVE)
-  githubUsername String?
-  githubToken   String?
-  bio           String?
-  subscriptionPlan SubscriptionPlan @default(FREE)
+  id                 String           @id @default(cuid())
+  name               String?
+  email              String           @unique
+  emailVerified      DateTime?
+  image              String?
+  role               UserRole         @default(DEVELOPER)
+  status             UserStatus       @default(ACTIVE)
+  githubUsername     String?
+  githubToken        String?
+  bio                String?
+  subscriptionPlan   SubscriptionPlan @default(FREE)
   subscriptionEndsAt DateTime?
 
   accounts      Account[]
@@ -41,10 +126,6 @@ model User {
   @@index([role])
 }
 
-enum UserRole { SUPER_ADMIN ADMIN MANAGER DEVELOPER VIEWER }
-enum UserStatus { ACTIVE SUSPENDED PENDING }
-enum SubscriptionPlan { FREE PRO ENTERPRISE }
-
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -58,7 +139,8 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@unique([provider, providerAccountId])
 }
 
@@ -74,36 +156,36 @@ model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
+
   @@unique([identifier, token])
 }
 
 // ===================== TEAMS =====================
 
 model Team {
-  id          String       @id @default(cuid())
+  id          String           @id @default(cuid())
   name        String
-  slug        String       @unique
+  slug        String           @unique
   description String?
   avatar      String?
   members     TeamMember[]
   projects    Project[]
   invitations TeamInvitation[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
 }
 
 model TeamMember {
-  id     String   @id @default(cuid())
-  userId String
-  teamId String
-  role   TeamRole @default(MEMBER)
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  id       String   @id @default(cuid())
+  userId   String
+  teamId   String
+  role     TeamRole @default(MEMBER)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team     Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
   joinedAt DateTime @default(now())
+
   @@unique([userId, teamId])
 }
-
-enum TeamRole { OWNER ADMIN MANAGER MEMBER VIEWER }
 
 model TeamInvitation {
   id        String           @id @default(cuid())
@@ -113,11 +195,9 @@ model TeamInvitation {
   token     String           @unique @default(cuid())
   status    InvitationStatus @default(PENDING)
   expiresAt DateTime
-  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  team      Team             @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  createdAt DateTime         @default(now())
 }
-
-enum InvitationStatus { PENDING ACCEPTED DECLINED EXPIRED }
 
 // ===================== PROJECTS =====================
 
@@ -134,8 +214,8 @@ model Project {
   teamId      String?
   githubRepo  String?
 
-  owner   User    @relation(fields: [ownerId], references: [id])
-  team    Team?   @relation(fields: [teamId], references: [id])
+  owner   User          @relation(fields: [ownerId], references: [id])
+  team    Team?         @relation(fields: [teamId], references: [id])
   tasks   Task[]
   columns KanbanColumn[]
 
@@ -145,16 +225,13 @@ model Project {
   @@unique([ownerId, slug])
 }
 
-enum ProjectStatus { ACTIVE COMPLETED ARCHIVED ON_HOLD }
-enum Priority { LOW MEDIUM HIGH URGENT }
-
 model KanbanColumn {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   name      String
   order     Int
   projectId String
-  color     String @default("#6366f1")
-  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  color     String   @default("#6366f1")
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   tasks     Task[]
   createdAt DateTime @default(now())
 }
@@ -183,8 +260,6 @@ model Task {
   updatedAt DateTime @updatedAt
 }
 
-enum TaskStatus { TODO IN_PROGRESS IN_REVIEW DONE CANCELLED }
-
 model Label {
   id    String @id @default(cuid())
   name  String
@@ -193,12 +268,12 @@ model Label {
 }
 
 model Comment {
-  id      String @id @default(cuid())
-  content String @db.Text
-  taskId  String
-  userId  String
-  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
-  user User @relation(fields: [userId], references: [id])
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  taskId    String
+  userId    String
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -206,23 +281,21 @@ model Comment {
 // ===================== NOTIFICATIONS =====================
 
 model Notification {
-  id      String           @id @default(cuid())
-  userId  String
-  title   String
-  message String
-  type    NotificationType @default(INFO)
-  read    Boolean          @default(false)
-  link    String?
-  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  id        String           @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      NotificationType @default(INFO)
+  read      Boolean          @default(false)
+  link      String?
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime         @default(now())
 }
-
-enum NotificationType { INFO SUCCESS WARNING ERROR TASK_ASSIGNED TEAM_INVITE PROJECT_UPDATE MENTION }
 
 // ===================== AUDIT LOGS =====================
 
 model AuditLog {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   userId    String
   action    String
   entity    String
@@ -231,7 +304,7 @@ model AuditLog {
   newValues Json?
   ipAddress String?
   userAgent String?
-  user      User @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
 
   @@index([userId])
@@ -242,13 +315,14 @@ model AuditLog {
 // ===================== GITHUB ANALYTICS CACHE =====================
 
 model GitHubAnalyticsCache {
-  id           String @id @default(cuid())
+  id           String   @id @default(cuid())
   userId       String
   repoFullName String
   data         Json
   expiresAt    DateTime
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
   @@unique([userId, repoFullName])
 }
 
@@ -263,11 +337,9 @@ model Subscription {
   endsAt      DateTime?
   cancelledAt DateTime?
   invoices    Invoice[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
 }
-
-enum SubStatus { ACTIVE CANCELLED EXPIRED TRIAL }
 
 model Invoice {
   id             String        @id @default(cuid())
@@ -276,8 +348,6 @@ model Invoice {
   currency       String        @default("USD")
   status         InvoiceStatus @default(PENDING)
   paidAt         DateTime?
-  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
-  createdAt      DateTime @default(now())
+  subscription   Subscription  @relation(fields: [subscriptionId], references: [id])
+  createdAt      DateTime      @default(now())
 }
-
-enum InvoiceStatus { PENDING PAID FAILED REFUNDED }
