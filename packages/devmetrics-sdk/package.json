@@ -1,0 +1,30 @@
+{
+  "name": "devmetrics-sdk",
+  "version": "1.0.0",
+  "description": "Open-source TypeScript SDK for GitHub developer analytics and metrics",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest"
+  },
+  "keywords": ["github", "analytics", "developer", "metrics", "typescript", "sdk"],
+  "author": "Mustafa Mahmoud <mustafaelzoghby@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mustafaelzoghby/devmetrics-ai"
+  },
+  "homepage": "https://mustafa-mahmoud.vercel.app",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
